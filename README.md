@@ -13,7 +13,7 @@ type Customer = {
     Id : int64
     Name : string
     Employees : uint32 option
-    AnnualRevenue : Nullable<uint64>
+    AnnualRevenue : Nullable&lt;uint64&gt;
 }
 
 module Customer =
