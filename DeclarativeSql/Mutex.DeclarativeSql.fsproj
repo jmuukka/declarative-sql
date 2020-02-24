@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>Mutex Oy</Company>
+    <Authors>Jarmo Muukka, Mutex Oy</Authors>
+    <Version>0.1</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>Copyright (c) Mutex Oy 2020</Copyright>
+    <RepositoryUrl>https://github.com/jmuukka/declarative-sql</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jmuukka/declarative-sql</PackageProjectUrl>
+    <PackageTags>F# fsharp SQL</PackageTags>
+    <Product>DeclarativeSql</Product>
+    <Description>Use declarative programming in F# and write your SQL without dependency to infrastructure. When you want to execute the SQL then use e.g. Mutex.DeclarativeSql.SqlClient (for SQL Server) package.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>5</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>5</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" />
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Value.fs" />
+    <Compile Include="DbValue.fs" />
+    <Compile Include="Obj.fs" />
+    <Compile Include="Commands.fs" />
+  </ItemGroup>
+
+</Project>

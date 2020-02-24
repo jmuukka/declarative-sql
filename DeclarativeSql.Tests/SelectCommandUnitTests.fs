@@ -1,46 +1,21 @@
-# Declarative SQL
+module SelectCommandUnitTests
 
-Use declarative programming in F# and write your SQL without dependency to infrastructure. When you want to execute the SQL then use e.g. Mutex.DeclarativeSql.SqlClient (for SQL Server) package.
+open System
+open Xunit
+open Mutex.DeclarativeSql
+open Mutex.DeclarativeSql.Obj
 
-## Example
-
-This example has a mixture of features. Normally you would not mix F# option types and .NET Nullable<'t> types in a single record type.
-
-<pre>
 type TenantId = TenantId of int
 
 type Customer = {
-    Id : int64
+    Id : int
     Name : string
-    Employees : uint32 option
+    Employees : int option
     AnnualRevenue : Nullable<uint64>
 }
 
 module Customer =
 
-    let update (TenantId tenantId) customer =
-        {
-            Sql = "update Customer set
-                    Name = @Name,
-                    Employees = @Employees,
-                    AnnualRevenue = @AnnualRevenue
-                   where TenantId = @TenantId
-                    and Id = @Id"
-            Parameters = [
-                "TenantId", DbValue.ofInt32 tenantId
-                "Id", DbValue.ofInt64 customer.Id
-                "Name", DbValue.ofString customer.Name
-                "Employees", DbValue.ofOption<uint32> customer.Employees
-                "AnnualRevenue", DbValue.ofNullable<uint64> customer.AnnualRevenue
-            ]
-        }
-</pre>
-
-Since SQL handles data of multiple types then it's required to convert all data types to object. Nulls are handled as DBNull.Value. DbValue module contains multiple functions for converting values to object while preserving the DbType.
-
-Selecting data is supported via type SelectCommand<'t>. Some people prefer using names and some prefer indexes. DeclarativeSql supports obj array, indexed and named as shown in following example:
-
-<pre>
     let private selectStatement =
         "select Id, Name, Employees, AnnualRevenue
         from Customer
@@ -95,4 +70,3 @@ Selecting data is supported via type SelectCommand<'t>. Some people prefer using
             Parameters = parameters tenantId
             Value = Named customerUsingNamed
         }
-</pre>
