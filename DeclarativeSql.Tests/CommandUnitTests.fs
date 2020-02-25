@@ -52,7 +52,7 @@ let ``parameters with null/None data are returned correctly`` () =
         "Employees", { DbType = DbType.UInt32; Value = DBNull.Value :> obj }
         "AnnualRevenue", { DbType = DbType.UInt64; Value = DBNull.Value :> obj }
     ]
-    Assert.Equal<(string * Value) list>(expected, actual.Parameters)
+    Assert.Equal<(BindName * Value) list>(expected, actual.Parameters)
 
 [<Fact>]
 let ``all parameters having values are returned correctly`` () =
@@ -73,4 +73,4 @@ let ``all parameters having values are returned correctly`` () =
         "Employees", { DbType = DbType.UInt32; Value = 500u :> obj }
         "AnnualRevenue", { DbType = DbType.UInt64; Value = 1_000_000UL :> obj }
     ]
-    Assert.Equal<(string * Value) list>(expected, actual.Parameters)
+    Assert.Equal<(BindName * Value) list>(expected, actual.Parameters)

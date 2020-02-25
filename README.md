@@ -27,16 +27,16 @@ module Customer =
                    where TenantId = @TenantId
                     and Id = @Id"
             Parameters = [
-                "TenantId", DbValue.ofInt32 tenantId
-                "Id", DbValue.ofInt64 customer.Id
-                "Name", DbValue.ofString customer.Name
-                "Employees", DbValue.ofOption<uint32> customer.Employees
-                "AnnualRevenue", DbValue.ofNullable<uint64> customer.AnnualRevenue
+                "TenantId", Value.ofInt32 tenantId
+                "Id", Value.ofInt64 customer.Id
+                "Name", Value.ofString customer.Name
+                "Employees", Value.ofOption<uint32> customer.Employees
+                "AnnualRevenue", Value.ofNullable<uint64> customer.AnnualRevenue
             ]
         }
 </pre>
 
-Since SQL handles data of multiple types then it's required to convert all data types to object. Nulls are handled as DBNull.Value. DbValue module contains multiple functions for converting values to object while preserving the DbType.
+Since SQL handles data of multiple types then it's required to convert all data types to object. Nulls are handled as DBNull.Value. Value module contains multiple functions for converting values to object while preserving the DbType.
 
 Selecting data is supported via type SelectCommand<'t>. Some people prefer using names and some prefer indexes. DeclarativeSql supports obj array, indexed and named as shown in following example:
 
@@ -96,3 +96,9 @@ Selecting data is supported via type SelectCommand<'t>. Some people prefer using
             Value = Named customerUsingNamed
         }
 </pre>
+
+The functions like int, string, option<'t> and nullable<'t> can be used directly, as in the example, when you open the module Mutex.DeclarativeSql.Obj. They convert obj to target datatype.
+
+------
+
+Copyright (c) 2020 Jarmo Muukka, Mutex Oy
