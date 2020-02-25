@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Include="ObjUnitTests.fs" />
+    <Compile Include="ValueUnitTests.fs" />
     <Compile Include="CommandUnitTests.fs" />
     <Compile Include="ScalarCommandUnitTests.fs" />
     <Compile Include="SelectCommandUnitTests.fs" />

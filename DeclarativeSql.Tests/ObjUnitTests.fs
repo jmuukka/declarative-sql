@@ -2,7 +2,6 @@ module ObjUnitTests
 
 open System
 open Xunit
-//open Mutex.DeclarativeSql
 open Mutex.DeclarativeSql.Obj
 
 [<Fact>]
@@ -105,48 +104,70 @@ let ``nullable null as obj is converted to option target type`` () =
     Assert.Equal(None, Nullable<float>() :> obj |> option<float>)
     Assert.Equal(None, Nullable<float32>() :> obj |> option<float32>)
 
-//[<Fact>]
-//let ``simple value converted to obj using ofValue equals simple value converted to obj`` () =
-//    let now = DateTime.UtcNow
+[<Fact>]
+let ``value as obj is converted to nullable target type`` () =
+    let now = DateTime.UtcNow
 
-//    Assert.Equal(1s :> obj, Int16 1s |> ofValue)
-//    Assert.Equal(1 :> obj, Int32 1 |> ofValue)
-//    Assert.Equal(1L :> obj, Int64 1L |> ofValue)
-//    Assert.Equal(true :> obj, Bool true |> ofValue)
-//    Assert.Equal(1m :> obj, Decimal 1m |> ofValue)
-//    Assert.Equal(now :> obj, DateTime now |> ofValue)
-//    Assert.Equal(1.0 :> obj, Float 1.0 |> ofValue)
-//    Assert.Equal(1.0f :> obj, Float32 1.0f |> ofValue)
-//    Assert.Equal(1uy :> obj, Byte 1uy |> ofValue)
-//    Assert.Equal(1us :> obj, UInt16 1us |> ofValue)
-//    Assert.Equal(1u :> obj, UInt32 1u |> ofValue)
-//    Assert.Equal(1UL :> obj, UInt64 1UL |> ofValue)
-//    Assert.Equal(1y :> obj, SByte 1y |> ofValue)
+    Assert.Equal(Nullable<int16> 1s, 1s :> obj |> nullable<int16>)
+    Assert.Equal(Nullable<int> 1, 1 :> obj |> nullable<int>)
+    Assert.Equal(Nullable<int64> 1L, 1L :> obj |> nullable<int64>)
+    Assert.Equal(Nullable<uint16> 1us, 1us :> obj |> nullable<uint16>)
+    Assert.Equal(Nullable<uint32> 1u, 1u :> obj |> nullable<uint32>)
+    Assert.Equal(Nullable<uint64> 1UL, 1UL :> obj |> nullable<uint64>)
+    Assert.Equal(Nullable<byte> 1uy, 1uy :> obj |> nullable<byte>)
+    Assert.Equal(Nullable<sbyte> 1y, 1y :> obj |> nullable<sbyte>)
+    Assert.Equal(Nullable<bool> true, true :> obj |> nullable<bool>)
+    Assert.Equal(Nullable<DateTime> now, now :> obj |> nullable<DateTime>)
+    Assert.Equal(Nullable<decimal> 1m, 1m :> obj |> nullable<decimal>)
+    Assert.Equal(Nullable<float> 1.0, 1.0 :> obj |> nullable<float>)
+    Assert.Equal(Nullable<float32> 1.0f, 1.0f :> obj |> nullable<float32>)
 
-//[<Fact>]
-//let ``String value converted to obj using ofValue equals value converted to obj`` () =
-//    Assert.Equal("ö" :> obj, String "ö" |> ofValue)
+[<Fact>]
+let ``nullable value as obj is converted to nullable target type`` () =
+    let now = DateTime.UtcNow
 
-//[<Fact>]
-//let ``ByteArray value converted to obj using ofValue equals value converted to obj`` () =
-//    let bytes = [|84uy|]
+    Assert.Equal(Nullable<int16> 1s, Nullable<int16> 1s :> obj |> nullable<int16>)
+    Assert.Equal(Nullable<int> 1, Nullable<int> 1 :> obj |> nullable<int>)
+    Assert.Equal(Nullable<int64> 1L, Nullable<int64> 1L :> obj |> nullable<int64>)
+    Assert.Equal(Nullable<uint16> 1us, Nullable<uint16> 1us :> obj |> nullable<uint16>)
+    Assert.Equal(Nullable<uint32> 1u, Nullable<uint32> 1u :> obj |> nullable<uint32>)
+    Assert.Equal(Nullable<uint64> 1UL, Nullable<uint64> 1UL :> obj |> nullable<uint64>)
+    Assert.Equal(Nullable<byte> 1uy, Nullable<byte> 1uy :> obj |> nullable<byte>)
+    Assert.Equal(Nullable<sbyte> 1y, Nullable<sbyte> 1y :> obj |> nullable<sbyte>)
+    Assert.Equal(Nullable<bool> true, Nullable<bool> true :> obj |> nullable<bool>)
+    Assert.Equal(Nullable<DateTime> now, Nullable<DateTime> now :> obj |> nullable<DateTime>)
+    Assert.Equal(Nullable<decimal> 1m, Nullable<decimal> 1m :> obj |> nullable<decimal>)
+    Assert.Equal(Nullable<float> 1.0, Nullable<float> 1.0 :> obj |> nullable<float>)
+    Assert.Equal(Nullable<float32> 1.0f, Nullable<float32> 1.0f :> obj |> nullable<float32>)
 
-//    Assert.Equal(bytes :> obj, ByteArray bytes |> ofValue)
+[<Fact>]
+let ``DBNull as obj is converted to nullable target type`` () =
+    Assert.Equal(Nullable<int16>(), DBNull.Value :> obj |> nullable<int16>)
+    Assert.Equal(Nullable<int>(), DBNull.Value :> obj |> nullable<int>)
+    Assert.Equal(Nullable<int64>(), DBNull.Value :> obj |> nullable<int64>)
+    Assert.Equal(Nullable<uint16>(), DBNull.Value :> obj |> nullable<uint16>)
+    Assert.Equal(Nullable<uint32>(), DBNull.Value :> obj |> nullable<uint32>)
+    Assert.Equal(Nullable<uint64>(), DBNull.Value :> obj |> nullable<uint64>)
+    Assert.Equal(Nullable<byte>(), DBNull.Value :> obj |> nullable<byte>)
+    Assert.Equal(Nullable<sbyte>(), DBNull.Value :> obj |> nullable<sbyte>)
+    Assert.Equal(Nullable<bool>(), DBNull.Value :> obj |> nullable<bool>)
+    Assert.Equal(Nullable<DateTime>(), DBNull.Value :> obj |> nullable<DateTime>)
+    Assert.Equal(Nullable<decimal>(), DBNull.Value :> obj |> nullable<decimal>)
+    Assert.Equal(Nullable<float>(), DBNull.Value :> obj |> nullable<float>)
+    Assert.Equal(Nullable<float32>(), DBNull.Value :> obj |> nullable<float32>)
 
-//[<Fact>]
-//let ``Object value converted to obj using ofValue equals value converted to obj`` () =
-//    let bytes = [|84uy|]
-
-//    Assert.Equal(bytes :> obj, Object bytes |> ofValue)
-
-//[<Fact>]
-//let ``null String value converted to obj using ofValue equals DBNull`` () =
-//    Assert.Equal(DBNull.Value :> obj, String null |> ofValue)
-
-//[<Fact>]
-//let ``null ByteArray value converted to obj using ofValue equals DBNull`` () =
-//    Assert.Equal(DBNull.Value :> obj, ByteArray null |> ofValue)
-
-//[<Fact>]
-//let ``null Object value converted to obj using ofValue equals DBNull`` () =
-//    Assert.Equal(DBNull.Value :> obj, Object null |> ofValue)
+[<Fact>]
+let ``nullable null as obj is converted to nullable target type`` () =
+    Assert.Equal(Nullable<int16>(), Nullable<int16>() :> obj |> nullable<int16>)
+    Assert.Equal(Nullable<int>(), Nullable<int>() :> obj |> nullable<int>)
+    Assert.Equal(Nullable<int64>(), Nullable<int64>() :> obj |> nullable<int64>)
+    Assert.Equal(Nullable<uint16>(), Nullable<uint16>() :> obj |> nullable<uint16>)
+    Assert.Equal(Nullable<uint32>(), Nullable<uint32>() :> obj |> nullable<uint32>)
+    Assert.Equal(Nullable<uint64>(), Nullable<uint64>() :> obj |> nullable<uint64>)
+    Assert.Equal(Nullable<byte>(), Nullable<byte>() :> obj |> nullable<byte>)
+    Assert.Equal(Nullable<sbyte>(), Nullable<sbyte>() :> obj |> nullable<sbyte>)
+    Assert.Equal(Nullable<bool>(), Nullable<bool>() :> obj |> nullable<bool>)
+    Assert.Equal(Nullable<DateTime>(), Nullable<DateTime>() :> obj |> nullable<DateTime>)
+    Assert.Equal(Nullable<decimal>(), Nullable<decimal>() :> obj |> nullable<decimal>)
+    Assert.Equal(Nullable<float>(), Nullable<float>() :> obj |> nullable<float>)
+    Assert.Equal(Nullable<float32>(), Nullable<float32>() :> obj |> nullable<float32>)

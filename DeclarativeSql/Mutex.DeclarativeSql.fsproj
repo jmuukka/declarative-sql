@@ -31,8 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Value.fs" />
     <Compile Include="Obj.fs" />
+    <Compile Include="Value.fs" />
     <Compile Include="Commands.fs" />
   </ItemGroup>
 
