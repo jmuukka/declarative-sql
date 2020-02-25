@@ -25,11 +25,11 @@ module Customer =
                    where TenantId = @TenantId
                     and Id = @Id"
             Parameters = [
-                "TenantId", DbValue.ofInt32 tenantId
-                "Id", DbValue.ofInt64 customer.Id
-                "Name", DbValue.ofString customer.Name
-                "Employees", DbValue.ofOption<uint32> customer.Employees
-                "AnnualRevenue", DbValue.ofNullable<uint64> customer.AnnualRevenue
+                "TenantId", Value.ofInt32 tenantId
+                "Id", Value.ofInt64 customer.Id
+                "Name", Value.ofString customer.Name
+                "Employees", Value.ofOption<uint32> customer.Employees
+                "AnnualRevenue", Value.ofNullable<uint64> customer.AnnualRevenue
             ]
         }
 
@@ -52,7 +52,7 @@ let ``parameters with null/None data are returned correctly`` () =
         "Employees", { DbType = DbType.UInt32; Value = DBNull.Value :> obj }
         "AnnualRevenue", { DbType = DbType.UInt64; Value = DBNull.Value :> obj }
     ]
-    Assert.Equal<(string * DbValue) list>(expected, actual.Parameters)
+    Assert.Equal<(string * Value) list>(expected, actual.Parameters)
 
 [<Fact>]
 let ``all parameters having values are returned correctly`` () =
@@ -73,4 +73,4 @@ let ``all parameters having values are returned correctly`` () =
         "Employees", { DbType = DbType.UInt32; Value = 500u :> obj }
         "AnnualRevenue", { DbType = DbType.UInt64; Value = 1_000_000UL :> obj }
     ]
-    Assert.Equal<(string * DbValue) list>(expected, actual.Parameters)
+    Assert.Equal<(string * Value) list>(expected, actual.Parameters)

@@ -71,22 +71,3 @@ module Obj =
         | null -> Nullable<'t>()
         | _ when value = dbNull -> Nullable<'t>()
         | _ -> value :?> 't |> Nullable<'t>
-
-    let ofValue value =
-        match value with
-        | Int16 v -> v :> obj
-        | Int32 v -> v :> obj
-        | Int64 v -> v :> obj
-        | Bool v -> v :> obj
-        | Decimal v -> v :> obj
-        | DateTime v -> v :> obj
-        | Float v -> v :> obj
-        | Float32 v -> v :> obj
-        | String v -> if v = null then dbNull else v :> obj
-        | Byte v -> v :> obj
-        | UInt16 v -> v :> obj
-        | UInt32 v -> v :> obj
-        | UInt64 v -> v :> obj
-        | SByte v -> v :> obj
-        | ByteArray v -> if v = null then dbNull else v :> obj
-        | Object v -> if v = null then dbNull else v

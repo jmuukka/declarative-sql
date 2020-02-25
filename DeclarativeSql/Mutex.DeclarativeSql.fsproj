@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Compile Include="Value.fs" />
-    <Compile Include="DbValue.fs" />
     <Compile Include="Obj.fs" />
     <Compile Include="Commands.fs" />
   </ItemGroup>

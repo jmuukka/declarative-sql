@@ -5,14 +5,14 @@ type BindName = string
 [<NoComparison>]
 type Command = {
     Sql : string
-    Parameters : (BindName * DbValue) list
+    Parameters : (BindName * Value) list
 }
 
 [<NoComparison>]
 [<NoEquality>]
 type ScalarCommand<'ret> = {
     Sql : string
-    Parameters : (BindName * DbValue) list
+    Parameters : (BindName * Value) list
     ScalarValue : obj -> 'ret
 }
 
@@ -30,6 +30,6 @@ type GetValue<'ret> =
 [<NoEquality>]
 type SelectCommand<'ret> = {
     Sql : string
-    Parameters : (BindName * DbValue) list
+    Parameters : (BindName * Value) list
     Value : GetValue<'ret>
 }

@@ -23,7 +23,7 @@ module Customer =
 
     let private parameters (TenantId tenantId) =
         [
-            "TenantId", DbValue.ofInt32 tenantId
+            "TenantId", Value.ofInt32 tenantId
         ]
 
     let private customerUsingObjArray (values : obj array) =
