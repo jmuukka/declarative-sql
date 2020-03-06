@@ -2,24 +2,19 @@
 
 type BindName = string
 
+type Parameter = BindName * Value
+
 [<NoComparison>]
 type Command = {
     Sql : string
-    Parameters : (BindName * Value) list
-}
-
-[<NoComparison>]
-[<NoEquality>]
-type StoredProcedureCommand = {
-    StoredProcedure : string
-    Parameters : (BindName * Value) list
+    Parameters : Parameter list
 }
 
 [<NoComparison>]
 [<NoEquality>]
 type ScalarCommand<'ret> = {
     Sql : string
-    Parameters : (BindName * Value) list
+    Parameters : Parameter list
     ScalarValue : obj -> 'ret
 }
 
@@ -37,14 +32,31 @@ type GetValue<'ret> =
 [<NoEquality>]
 type SelectCommand<'ret> = {
     Sql : string
-    Parameters : (BindName * Value) list
+    Parameters : Parameter list
     Value : GetValue<'ret>
+}
+
+// Stored Procedure
+
+[<NoComparison>]
+[<NoEquality>]
+type StoredProcedureCommand = {
+    StoredProcedure : string
+    Parameters : Parameter list
+}
+
+[<NoComparison>]
+[<NoEquality>]
+type StoredProcedureScalarCommand<'ret> = {
+    StoredProcedure : string
+    Parameters : Parameter list
+    ScalarValue : obj -> 'ret
 }
 
 [<NoComparison>]
 [<NoEquality>]
 type StoredProcedureSelectCommand<'ret> = {
     StoredProcedure : string
-    Parameters : (BindName * Value) list
+    Parameters : Parameter list
     Value : GetValue<'ret>
 }
