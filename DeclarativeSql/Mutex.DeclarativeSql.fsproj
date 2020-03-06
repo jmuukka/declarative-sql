@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>Mutex Oy</Company>
     <Authors>Jarmo Muukka, Mutex Oy</Authors>
-    <Version>0.3</Version>
+    <Version>0.4</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Copyright (c) Mutex Oy 2020</Copyright>
     <RepositoryUrl>https://github.com/jmuukka/declarative-sql</RepositoryUrl>
@@ -12,7 +12,7 @@
     <PackageTags>F# fsharp SQL</PackageTags>
     <Product>DeclarativeSql</Product>
     <Description>Use declarative programming in F# and write your SQL without dependency to infrastructure. When you want to execute the SQL then use e.g. Mutex.DeclarativeSql.SqlClient (for SQL Server) package.</Description>
-    <PackageReleaseNotes>Added StoredProcedureSelectCommand&lt;'ret&gt; type</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

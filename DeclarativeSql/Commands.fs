@@ -10,17 +10,17 @@ type Command = {
 
 [<NoComparison>]
 [<NoEquality>]
-type ScalarCommand<'ret> = {
-    Sql : string
+type StoredProcedureCommand = {
+    StoredProcedure : string
     Parameters : (BindName * Value) list
-    ScalarValue : obj -> 'ret
 }
 
 [<NoComparison>]
 [<NoEquality>]
-type StoredProcedureCommand<'ret> = {
-    StoredProcedure : string
+type ScalarCommand<'ret> = {
+    Sql : string
     Parameters : (BindName * Value) list
+    ScalarValue : obj -> 'ret
 }
 
 type ZeroBasedIndex = int
