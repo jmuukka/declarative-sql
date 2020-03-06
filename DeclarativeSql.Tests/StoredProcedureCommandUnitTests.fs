@@ -1,21 +1,26 @@
 module StoredProcedureCommandUnitTests
 
+open System.Data
 open Xunit
 open Mutex.DeclarativeSql
 
 module Database =
 
-    let doSomething =
+    let doSomething tenantId =
         {
             StoredProcedure = "DoSomething"
-            Parameters = []
-            Value = (fun value -> value :?> int)
+            Parameters = [
+                "TenantId", Value.ofInt32 tenantId
+            ]
         }
 
 [<Fact>]
-let ``the value returned from the procedure is correctly converted to value of actual type`` () =
-    let returnValueFromTheProcedure = 13
+let ``all parameters having values are returned correctly`` () =
+    let tenantId = 9832838
 
-    let actual = Database.doSomething.Value (returnValueFromTheProcedure :> obj)
+    let actual = Database.doSomething tenantId
 
-    Assert.Equal(returnValueFromTheProcedure, actual)
+    let expected = [
+        "TenantId", { DbType = DbType.Int32; Value = 9832838 :> obj }
+    ]
+    Assert.Equal<(BindName * Value) list>(expected, actual.Parameters)

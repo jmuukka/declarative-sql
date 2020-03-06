@@ -14,6 +14,7 @@
     <Compile Include="ScalarCommandUnitTests.fs" />
     <Compile Include="StoredProcedureCommandUnitTests.fs" />
     <Compile Include="SelectCommandUnitTests.fs" />
+    <Compile Include="StoredProcedureSelectCommandUnitTests.fs" />
     <Compile Include="Tests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

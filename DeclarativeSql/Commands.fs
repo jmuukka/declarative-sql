@@ -21,7 +21,6 @@ type ScalarCommand<'ret> = {
 type StoredProcedureCommand<'ret> = {
     StoredProcedure : string
     Parameters : (BindName * Value) list
-    Value : obj -> 'ret
 }
 
 type ZeroBasedIndex = int
@@ -38,6 +37,14 @@ type GetValue<'ret> =
 [<NoEquality>]
 type SelectCommand<'ret> = {
     Sql : string
+    Parameters : (BindName * Value) list
+    Value : GetValue<'ret>
+}
+
+[<NoComparison>]
+[<NoEquality>]
+type StoredProcedureSelectCommand<'ret> = {
+    StoredProcedure : string
     Parameters : (BindName * Value) list
     Value : GetValue<'ret>
 }
