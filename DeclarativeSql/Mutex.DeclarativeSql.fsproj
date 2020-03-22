@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>Mutex Oy</Company>
     <Authors>Jarmo Muukka, Mutex Oy</Authors>
-    <Version>0.5</Version>
+    <Version>0.6</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Copyright (c) Mutex Oy 2020</Copyright>
     <RepositoryUrl>https://github.com/jmuukka/declarative-sql</RepositoryUrl>
@@ -35,6 +35,7 @@
     <Compile Include="Obj.fs" />
     <Compile Include="Value.fs" />
     <Compile Include="Commands.fs" />
+    <Compile Include="Operators.fs" />
   </ItemGroup>
 
 </Project>

@@ -29,6 +29,12 @@ let ``string as obj is converted to string`` () =
     Assert.Equal("ä", "ä" :> obj |> string)
 
 [<Fact>]
+let ``obj is converted to obj`` () =
+    Assert.Equal(null, null |> object)
+    Assert.Equal(null, DBNull.Value :> obj |> object)
+    Assert.Equal("ä" :> obj, "ä" :> obj |> object)
+
+[<Fact>]
 let ``byte array as obj is converted to byte array`` () =
     let bytes = [|84uy|]
 

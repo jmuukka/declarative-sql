@@ -92,6 +92,13 @@ module Value =
                 | _ -> value :> obj
     }
 
+    let ofObj (value : obj) = {
+        DbType = DbType.Object
+        Value = match value with
+                | null -> dbNullObj
+                | _ -> value
+    }
+
     let private resolveDbType<'t> () =
         match typeof<'t> with
         | t when t = typeof<int16> -> DbType.Int16

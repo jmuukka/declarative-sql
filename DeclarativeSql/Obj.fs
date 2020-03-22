@@ -52,6 +52,12 @@ module Obj =
         | _ when value = dbNull -> null
         | _ -> Convert.ToString(value)
 
+    let object (value : obj) =
+        match value with
+        | null -> null
+        | _ when value = dbNull -> null
+        | _ -> value
+
     let byteArray (value : obj) =
         match value with
         | null -> null

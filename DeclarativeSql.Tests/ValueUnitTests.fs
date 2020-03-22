@@ -36,6 +36,11 @@ let ``byte array value using ofByteArray equals expected Value`` () =
     Assert.Equal({ DbType = DbType.Binary; Value = bytes :> obj }, Value.ofByteArray bytes)
 
 [<Fact>]
+let ``obj value using ofObj equals expected Value`` () =
+    Assert.Equal({ DbType = DbType.Object; Value = DBNull.Value :> obj }, Value.ofObj null)
+    Assert.Equal({ DbType = DbType.Object; Value = "ö" :> obj }, Value.ofObj "ö")
+
+[<Fact>]
 let ``Some value using ofOption<'t> equals expected Value`` () =
     let now = DateTime.UtcNow
     let object = obj()
