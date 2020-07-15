@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>Mutex Oy</Company>
     <Authors>Jarmo Muukka, Mutex Oy</Authors>
-    <Version>0.6</Version>
+    <Version>0.6.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Copyright (c) Mutex Oy 2020</Copyright>
     <RepositoryUrl>https://github.com/jmuukka/declarative-sql</RepositoryUrl>

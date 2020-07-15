@@ -39,7 +39,6 @@ type SelectCommand<'ret> = {
 // Stored Procedure
 
 [<NoComparison>]
-[<NoEquality>]
 type StoredProcedureCommand = {
     StoredProcedure : string
     Parameters : Parameter list
